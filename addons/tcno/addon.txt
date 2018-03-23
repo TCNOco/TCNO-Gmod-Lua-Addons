@@ -1,0 +1,11 @@
+"AddonInfo"
+{
+	"name"				"TCNO Multi Command Plugin"
+	"version"			"1.0"
+	"up_date"			"2018"
+	"author_name"			"Wesley Pyburn (TechNobo)"
+	"author_email"			"contact@tcno.co"
+	"author_url"			"https://tcno.co/"
+	"info"				"Adds multiple useful commands to the game"
+	"override"			"1"
+}
