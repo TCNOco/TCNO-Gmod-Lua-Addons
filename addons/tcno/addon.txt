@@ -3,9 +3,9 @@
 	"name"				"TCNO Multi Command Plugin"
 	"version"			"1.0"
 	"up_date"			"2018"
-	"author_name"			"Wesley Pyburn (TechNobo)"
+	"author_name"			"Wesley Pyburn (TechNobo) | https://tcno.co/"
 	"author_email"			"contact@tcno.co"
 	"author_url"			"https://tcno.co/"
-	"info"				"Adds multiple useful commands to the game"
+	"info"				"Adds multiple useful commands to the game (https://github.com/TcNobo/TCNO-Gmod-Lua-Addons)"
 	"override"			"1"
 }
