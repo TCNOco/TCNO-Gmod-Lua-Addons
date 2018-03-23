@@ -31,7 +31,7 @@ end
 -- Function to create the timer
 function tcnoTimerCreate()
 	timer.Create("tcnoOnlinePlayerCount", GetConVar( "tcno_IntervalTime" ):GetInt(), 0, function()
-		tcnoPlayerCount()
+	print( "[" .. #player.GetAll() .. "/" .. game.MaxPlayers() .. "] Players online")
 	end)
 end
 function tcnoReload()
