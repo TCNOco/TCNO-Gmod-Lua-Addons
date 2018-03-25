@@ -17,6 +17,7 @@ https://youtube.com/TechNobo
 --]]
 
 
+AddCSLuaFile()
 --------- CONVAR DEFINITION ---------
 if !ConVarExists( "tcno_IntervalTime" ) then CreateConVar( "tcno_IntervalTime", 240, FCVAR_NONE, "Set the interval for the online player count." ) end
  --Time in seconds between Player Count checks (240 is default)
@@ -98,3 +99,4 @@ function tcnoChatCommand( ply, text, public )
 end
 	
 hook.Add( "PlayerSay", "tcnoChatCommand", tcnoChatCommand );
+print( "TCNO: Successfully loaded PlayerCountList! list and count commands should now work." )
