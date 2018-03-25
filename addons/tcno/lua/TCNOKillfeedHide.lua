@@ -68,3 +68,8 @@ print("The value for tcno_AllowAdminKillfeed has been changed!")
 	end
 end
 cvars.AddChangeCallback( "tcno_AllowAdminKillfeed", AdminKillfeedChanged )
+
+
+print("===============")
+print("Succesfully loaded TCNO Killfeed Hide")
+print("===============")

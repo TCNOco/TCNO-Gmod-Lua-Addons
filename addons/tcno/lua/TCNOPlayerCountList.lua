@@ -100,3 +100,8 @@ end
 	
 hook.Add( "PlayerSay", "tcnoChatCommand", tcnoChatCommand );
 print( "TCNO: Successfully loaded PlayerCountList! list and count commands should now work." )
+
+
+print("===============")
+print("Succesfully loaded TCNO Player Count List")
+print("===============")
