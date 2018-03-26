@@ -9,6 +9,8 @@ This is just for easy checking when you're not actively on the server or availab
 Use "count" in console (or !count or /count in chat) to immediately check the number of players online, instead of waiting for the timer.
 Use "list" in console (or !list or /list in chat) to immediately list all the players on the server.
 
+Use "list" in server console to reveal a verbose list of players, their jobs and balances (DarkRP Only)
+
 Created by Wesley Pyburn - TechNobo
 https://tcno.co/
 https://github.com/TcNobo/
@@ -39,15 +41,57 @@ function tcnoReload()
 	timer.Remove( "tcnoOnlinePlayerCount" )
 	tcnoTimerCreate()
 end
-function tcnoListPlayers(ply)
-	if (#player.GetAll() > 0) then 
-		PCPrint( ply, "----- List of online players -----" )
-		for _, ppp in ipairs( player.GetAll() ) do
-			PCPrint( ply, ppp:Nick() .. "(" .. ppp:SteamID() .. ")" )
+
+function tcnoListDarkRPPlayers(ply)
+	if not ply:IsValid() then
+		if (#player.GetAll() > 0) then 
+			print( "\n----- List of online DarkRP players -----\n" )
+			for _, ppp in ipairs( player.GetAll() ) do
+				if ppp:IsValid() then
+					local moneyString = ppp:getDarkRPVar("money")
+					local newMoneyString = ""
+					local count = 0
+					moneyString = string.reverse(moneyString)
+					for i = 1, #moneyString do
+						if ((i % 3) == 0) then
+							local c = moneyString:sub(i,i)
+							newMoneyString = newMoneyString .. c .. ","
+						count = count + 2
+						else
+							local c = moneyString:sub(i,i)
+							newMoneyString = newMoneyString .. c
+							count = count + 1
+						end
+					end
+					if newMoneyString:sub(count,count) ==  ","  then
+						newMoneyString = newMoneyString:sub(0, count-1)
+					end
+					newMoneyString = string.reverse(newMoneyString)
+					newMoneyString = newMoneyString .. ".00"
+					
+					print( ppp:Nick() .. " (" .. ppp:SteamID() .. ")" .. " | Job: " .. team.GetName(ppp:Team()) .. " | Bal: $" .. newMoneyString )
+				end
+			end
+			print( "\n------ End of online DarkRP players------\n" )
+		else
+			print( "There are currently no players online." )
 		end
-		PCPrint( ply, "------ End of online players------" )
+	end
+end
+
+function tcnoListPlayers(ply)
+	if not ply:IsValid() and GAMEMODE.Name == "DarkRP" then
+		tcnoListDarkRPPlayers(ply)
 	else
-		PCPrint( ply, "There are currently no players online." )
+		if (#player.GetAll() > 0) then 
+			PCPrint( ply, "\n----- List of online players -----\n" )
+			for _, ppp in ipairs( player.GetAll() ) do
+				PCPrint( ply, ppp:Nick() .. "(" .. ppp:SteamID() .. ")" )
+			end
+			PCPrint( ply, "\n------ End of online players------\n" )
+		else
+			PCPrint( ply, "\nThere are currently no players online.\n" )
+		end
 	end
 end
 ------- END FUNCTION DEFINITION -------
@@ -99,7 +143,6 @@ function tcnoChatCommand( ply, text, public )
 end
 	
 hook.Add( "PlayerSay", "tcnoChatCommand", tcnoChatCommand );
-print( "TCNO: Successfully loaded PlayerCountList! list and count commands should now work." )
 
 
 print("===============")
